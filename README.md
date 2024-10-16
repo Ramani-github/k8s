@@ -13,3 +13,5 @@ kubectl config set-context ramani-k8s --cluster=kubernetes --user=ramani --names
 kubectl config get-contexts
 
 kubectl config use-context ramani-k8s
+
+rolebinding = subject(user) + role (activities to do on pods)
