@@ -15,3 +15,9 @@ kubectl config get-contexts
 kubectl config use-context ramani-k8s
 
 rolebinding = subject(user) + role (activities to do on pods)
+
+ClusterRole and ClusterRoleBinding so there must be a way to define roles and role bindings at the cluster level instead of namespace level that's  where cluster role and cluster role binding comes into the picture the only difference between role bending and cluster role bending is that role  binding is namespaced meaning only where role binding is defined that permissions are valid whereas cluster role bending is at the cluster level that means they can access the resources in any
+namespace 
+
+In Kubernetes, a Service Account is an identity used by applications or services running inside a pod to interact with the Kubernetes API. It's a way to grant pods specific permissions (RBAC - Role-Based Access Control) to perform actions on Kubernetes resources such as secrets, config maps, and other resources.
+By default, every pod is assigned the default service account in the namespace where it is running. However, for more secure or specific access, you can create custom service accounts with specific roles and permissions.
