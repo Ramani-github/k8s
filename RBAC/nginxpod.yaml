@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest  # This is the container image (nginx in this case)
+    ports:
+    - containerPort: 80   # Expose port 80 inside the container
