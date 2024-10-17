@@ -14,6 +14,10 @@ kubectl config get-contexts
 
 kubectl config use-context ramani-k8s
 
+kubectl api-resources -o wide | grep pod
+
+kubectl get role
+
 rolebinding = subject(user) + role (activities to do on pods)
 
 ClusterRole and ClusterRoleBinding so there must be a way to define roles and role bindings at the cluster level instead of namespace level that's  where cluster role and cluster role binding comes into the picture the only difference between role bending and cluster role bending is that role  binding is namespaced meaning only where role binding is defined that permissions are valid whereas cluster role bending is at the cluster level that means they can access the resources in any
