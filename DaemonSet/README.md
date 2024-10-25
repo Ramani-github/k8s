@@ -13,4 +13,9 @@ You can adjust how many pods are running as needed.
 - eg : kubectl create deployment metrics --image nginx --replica 3
 above example creates 3 pods but nt all nodes are used
 
-- But demonset make sure run one pod one node eg: collecting metrics from each node 
+- But demonset make sure run one pod one node eg: collecting metrics from each node
+
+- mounting these two volumes /proc and /sys  are two virtual file systems in Linux that allow users and programs to interact with the kernel and access various system information in a convenient way .
+-
+- both these virtual file systems are read only and the information they provide is generated dynamically by the kernel when accessed, because we need system level metrics we need to mount these two folders to our container as these folders are present in every node we are giving this as host path
+
