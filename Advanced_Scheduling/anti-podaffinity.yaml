@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: my-app  # The same app label to prevent scheduling on the same node
+              topologyKey: "kubernetes.io/hostname"  # Ensures pods are spread across different nodes
+      containers:
+        - name: my-app-container
+          image: nginx:latest
+          ports:
+            - containerPort: 8080
