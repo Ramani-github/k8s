@@ -9,7 +9,9 @@ syntax
           nodeSelector:
             disktype: ssd
             
-kubectl label nodes <node-name> disktype=ssd
+kubectl label nodes <node-name> disktype=ssd = lable the node
+kubectl label node <node-name> <label-key>- = unlable the node
+
 ---------------------------------------------------------
 # Difference:`nodeName` forces a pod to run on one specific node. `nodeSelector` lets Kubernetes choose any node with matching labels.
 --------------------------------------------------------------------------------------------------------------------------------
@@ -49,9 +51,14 @@ synatx:
              values:
              - us-west
 
-        
+ ---------------------
+ ## Node affinity provides powerful options to control pod placement in a cluster:
+
+# requiredDuringSchedulingIgnoredDuringExecution: Must match; pods are only scheduled if these conditions are met.
+# preferredDuringSchedulingIgnoredDuringExecution: Tries to match for optimal placement but falls back if no nodes meet these preferences.
 -----------------------------------------------------------------------
 2. PodAffinity:Controls the placement of pods relative to other pods. Pod affinity places pods close to each other (e.g., same node or availability zone), while anti-affinity spreads them apart to avoid single points of failure.
-3. Pod Anti-Affinity: Use it to distribute pods across nodes for high availability.
+   
+4. Pod Anti-Affinity: Use it to distribute pods across nodes for high availability.
 
 
