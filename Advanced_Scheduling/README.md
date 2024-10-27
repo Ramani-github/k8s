@@ -60,5 +60,36 @@ synatx:
 2. PodAffinity:Controls the placement of pods relative to other pods. Pod affinity places pods close to each other (e.g., same node or availability zone), while anti-affinity spreads them apart to avoid single points of failure.
    
 4. Pod Anti-Affinity: Use it to distribute pods across nodes for high availability.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Taints & Tolerations:
 
+Taints and tolerations are key concepts in Kubernetes used to control which pods can be scheduled on which nodes. They help ensure that specific workloads are run on appropriate nodes, improving resource management and operational stability.
 
+Taints
+A taint is a property of a node that prevents pods from being scheduled onto it unless those pods tolerate the taint. Taints are set on nodes using the following format:
+
+<key>:<value>:<effect>
+key: A string that identifies the taint.
+value: An optional string that provides additional context.
+effect: Specifies what happens to pods that do not tolerate the taint. The possible effects are:
+NoSchedule: Pods that do not tolerate the taint cannot be scheduled on the node.
+PreferNoSchedule: The scheduler will try to avoid scheduling pods that do not tolerate the taint on the node, but it's not a strict requirement.
+NoExecute: Existing pods that do not tolerate the taint are evicted from the node, and new pods cannot be scheduled on it.
+--------------------------------------------------
+Tolerations
+A toleration is a property of a pod that allows it to be scheduled on nodes with matching taints. Tolerations are specified in the pod's configuration in the following format:
+
+tolerations:
+- key: "<key>"
+  operator: "Equal"  # or "Exists"
+  value: "<value>"    # required only if operator is "Equal"
+  effect: "<effect>"  # optional
+  tolerationSeconds: <seconds> # optional
+  
+key: The key of the taint that the pod can tolerate.
+operator: Indicates how the key and value should be compared. It can be Equal (the value must match) or Exists (the value is not checked).
+value: The value of the taint that the pod can tolerate (only required if the operator is Equal).
+effect: The effect that this toleration corresponds to.
+tolerationSeconds: Optional; defines how long the pod can tolerate the taint.
+
+eg:kubectl taint nodes node1 dedicated=high-availability:NoExecute
