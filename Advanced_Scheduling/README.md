@@ -91,5 +91,6 @@ operator: Indicates how the key and value should be compared. It can be Equal (t
 value: The value of the taint that the pod can tolerate (only required if the operator is Equal).
 effect: The effect that this toleration corresponds to.
 tolerationSeconds: Optional; defines how long the pod can tolerate the taint.
-
-eg:kubectl taint nodes node1 dedicated=high-availability:NoExecute
+------------------------------------------------------------------------------------
+eg:kubectl taint nodes node1 dedicated=high-availability:NoExecute = taint
+   kubectl taint nodes node1 dedicated=high-availability:NoExecute- = untaint
