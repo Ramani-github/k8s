@@ -6,6 +6,8 @@ openssl req -new -key ramani.key -out ramani.csr -subj "/CN=ramani/O=development
 
 openssl x509 -req -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -in ramani.csr -out ramani.crt -days 365
 
+openssl x509 -req -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -in ramani.csr -out ramani.crt -days 365
+
 kubectl config set-credentials ramani --client-certificate=ramani.crt --client-key=ramani.key
 
 kubectl config set-context ramani-k8s --cluster=kubernetes --user=ramani --namespace=default
@@ -37,4 +39,7 @@ By default, every pod is assigned the default service account in the namespace w
   ku auth can-i create ns
   ku auth can-i create svc
   ku auth can-i delete pods
+  kubectl auth can-i get nodes --as ramani
+  
+ kubectl auth can-i create pods --as="system:serviceaccount:default:test-sa"
   kubectl exec -it kubectl-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
