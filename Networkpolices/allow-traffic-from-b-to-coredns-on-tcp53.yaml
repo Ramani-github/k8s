@@ -1,0 +1,21 @@
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-from-b-to-coredns-on-tcp53
+  namespace: b
+spec:
+  podSelector: 
+   matchLabels:
+    ns: b
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 142.250.31.99/32
+    ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 443
