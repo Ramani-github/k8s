@@ -2,7 +2,7 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: deny-all-traffic-bravo
+  name: deny-all-traffic-a
   namespace: a
 spec:
   podSelector: {}
@@ -14,7 +14,7 @@ spec:
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: deny-all-traffic-charlie
+  name: deny-all-traffic-b
   namespace: a
 spec:
   podSelector: {}
