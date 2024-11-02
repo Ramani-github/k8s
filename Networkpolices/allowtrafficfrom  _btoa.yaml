@@ -1,0 +1,43 @@
+#Allow Ingress Traffic From B To A applied at A Namespace
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-from-b-to-a
+  namespace: a
+spec:
+  podSelector: 
+   matchLabels:
+    ns: a
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          nsp: b
+    - podSelector:
+        matchLabels:
+          ns: b
+
+#Allow Egress Traffic From B To A applied at B Namespace
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-from-b-to-a
+  namespace: b
+spec:
+  podSelector: 
+   matchLabels:
+    ns: b
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          nsp: a
+    - podSelector:
+        matchLabels:
+          ns: a
