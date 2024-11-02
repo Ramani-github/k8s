@@ -1,0 +1,47 @@
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-from-a-to-b-on-tcp8888
+  namespace: b
+spec:
+  podSelector: 
+   matchLabels:
+    ns: b
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          nsp: a
+    - podSelector:
+        matchLabels:
+          ns: a
+    ports:
+    - protocol: TCP
+      port: 8888
+
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-from-a-to-b-on-tcp8888
+  namespace: a
+spec:
+  podSelector: 
+   matchLabels:
+    ns: a
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          nsp: b
+    - podSelector:
+        matchLabels:
+          ns: b
+    ports:
+    - protocol: TCP
+      port: 8888
