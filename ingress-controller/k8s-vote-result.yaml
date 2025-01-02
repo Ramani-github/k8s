@@ -124,6 +124,17 @@ spec:
             value: trust
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgress-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: db
